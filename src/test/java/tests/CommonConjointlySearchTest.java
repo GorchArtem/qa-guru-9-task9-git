@@ -21,7 +21,6 @@ public class CommonConjointlySearchTest extends TestBase {
         open(SEARCH_URL);
         $(SEARCH_SELECTOR).setValue(searchQuery).pressEnter();
         $$(RESULT_SELECTOR).find(Condition.text(searchQuery)).shouldBe(Condition.visible);
-//        Thread.sleep(3000);
     }
 
     //@EnumSource
