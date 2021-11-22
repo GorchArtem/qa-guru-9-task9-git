@@ -17,7 +17,7 @@ public class CommonConjointlySearchTest extends TestBase {
     //@value source
     @ParameterizedTest(name = "Search with text = {0} and checked it on the page")
     @ValueSource(strings = {"MAXDIFF", "DIY"})
-    public void searchWithValueSource(String searchQuery) throws InterruptedException {
+    public void searchWithValueSource(String searchQuery) {
         open(SEARCH_URL);
         $(SEARCH_SELECTOR).setValue(searchQuery).pressEnter();
         $$(RESULT_SELECTOR).find(Condition.text(searchQuery)).shouldBe(Condition.visible);
@@ -26,11 +26,10 @@ public class CommonConjointlySearchTest extends TestBase {
     //@EnumSource
     @ParameterizedTest(name = "Search with text = {0} and checked it on the page")
     @EnumSource(SearchQuery.class)
-    public void searchWithEnumSource(SearchQuery searchQuery) throws InterruptedException {
+    public void searchWithEnumSource(SearchQuery searchQuery) {
         open(SEARCH_URL);
         $(SEARCH_SELECTOR).setValue(searchQuery.name()).pressEnter();
         $$(RESULT_SELECTOR).find(Condition.text(searchQuery.name())).shouldBe(Condition.visible);
-        Thread.sleep(3000);
     }
 
     //@MethodSource
@@ -43,11 +42,10 @@ public class CommonConjointlySearchTest extends TestBase {
 
     @ParameterizedTest(name = "Search with text = {0} and checked it on the page")
     @MethodSource("stringProvider")
-    public void searchWithMethodSource(String searchQuery, String searchResult) throws InterruptedException {
+    public void searchWithMethodSource(String searchQuery, String searchResult) {
         open(SEARCH_URL);
         $(SEARCH_SELECTOR).setValue(searchQuery).pressEnter();
         $$(RESULT_SELECTOR).find(Condition.text(searchResult)).shouldBe(Condition.visible);
-        Thread.sleep(3000);
     }
 
     //@CsvSource
@@ -56,10 +54,9 @@ public class CommonConjointlySearchTest extends TestBase {
             "Van Westendorp | Van Westendorp Price Sensitivity Meter",
             "Gabor-Granger  | Gabor-Granger Model"},
             delimiter = '|')
-    public void searchWithCsvSource(String searchQuery, String searchResult) throws InterruptedException {
+    public void searchWithCsvSource(String searchQuery, String searchResult) {
         open(SEARCH_URL);
         $(SEARCH_SELECTOR).setValue(searchQuery).pressEnter();
         $$(RESULT_SELECTOR).find(Condition.text(searchResult)).shouldBe(Condition.visible);
-        Thread.sleep(3000);
     }
 }
